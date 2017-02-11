@@ -1,16 +1,16 @@
 import { Route } from '@angular/router';
-import { BizFramer, BizNgModule } from '@biznas/ng-core';
+import { Framer, FramingNgModule } from '@framing/ng-core';
 
 import { MenuItemConfig } from './menu-item.config';
 
-export class MenuItemFramer extends BizFramer<MenuItemConfig> {
+export class MenuItemFramer extends Framer<MenuItemConfig> {
 
-  public frame(bizNgModule: BizNgModule, route?: Route): void {
+  public frame(framingNgModule: FramingNgModule, route?: Route): void {
     if (!route) {
       console.warn('MenuItemFramer must be attached to route data');
       return;
     }
 
-    super.frame(bizNgModule, route);
+    super.frame(framingNgModule, route);
   }
 }

@@ -1,15 +1,15 @@
 import { Route } from '@angular/router';
-import { BizFramer, BizNgModule } from '@biznas/ng-core';
+import { Framer, FramingNgModule } from '@framing/ng-core';
 
 import { DialogComponent } from './dialog.component';
 import { DialogConfig } from './dialog.config';
 
-export class DialogFramer extends BizFramer<DialogConfig> {
+export class DialogFramer extends Framer<DialogConfig> {
 
-  public frame(bizNgModule: BizNgModule, route?: Route): void {
-    super.frame(bizNgModule, route);
+  public frame(framingNgModule: FramingNgModule, route?: Route): void {
+    super.frame(framingNgModule, route);
 
-    bizNgModule
+    framingNgModule
       .component(DialogComponent)
       .declare(this.config.component);
   }

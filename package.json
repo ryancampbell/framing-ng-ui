@@ -1,7 +1,7 @@
 {
   "name": "@framing/ng-ui",
   "description": "Framing UI",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "main": "index.js",
   "typings": "index.d.ts",
   "private": false,
@@ -10,7 +10,7 @@
     "tsc": "tsc",
     "tslint": "tslint -c ./tslint.json src/**/*.ts --exclude=src/**/*.d.ts",
     "prepublish": "npm run clean; npm run tsc; npm run tslint",
-    "clean": "rm -f ./src/*.d.ts; rm -f ./src/**/*.d.ts; rm -f ./src/*.js; rm -f ./src/**/*.js; rm -f ./src/*.js.map; rm -f ./src/**/*.js.map"
+    "clean": "rm -f ./*.d.ts; rm -f ./src/*.d.ts; rm -f ./src/**/*.d.ts; rm -f ./*.js; rm -f ./src/*.js; rm -f ./src/**/*.js; rm -f ./*.js.map; rm -f ./src/*.js.map; rm -f ./src/**/*.js.map"
   },
   "author": "",
   "license": "MIT",
@@ -26,7 +26,8 @@
     "@angular/platform-server": "4.0.0-beta.6",
     "@angular/router": "4.0.0-beta.6",
     "@angular/material": "2.0.0-beta.1",
-    "@biznas/ng-core": "0.3.8",
+    "@biznas/ng-core": "0.4.0",
+    "@framing/ng-core": "0.1.2",
     "angular": "1.6.0",
     "body-parser": "^1.15.2",
     "compression": "^1.6.2",

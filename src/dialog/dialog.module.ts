@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { Biz } from '@biznas/ng-core';
+import { Framing } from '@framing/ng-core';
 
 import { DialogService } from './dialog.service';
 
-@NgModule(Biz
+@NgModule(Framing
   .ngModule({
     providers: [
       DialogService,

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot, UrlSegment } from '@angular/router';
 
-import { AutowireFramer } from '@biznas/ng-core';
+import { AutowireFramer } from '@framing/ng-core';
 
 import { Breadcrumb } from './breadcrumb';
 import { BreadcrumbFramer } from './breadcrumb.framer';
