@@ -1,7 +1,7 @@
 {
   "name": "@framing/ng-ui",
   "description": "Framing UI",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "main": "index.js",
   "typings": "index.d.ts",
   "private": false,
