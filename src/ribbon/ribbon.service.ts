@@ -22,10 +22,7 @@ export class RibbonService {
   ) {
     this.subscriptions.push(this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.ribbonStore = {
-          hasSave: false,
-          hasBack: false,
-        };
+        this.ribbonStore = {};
         this.resolveRibbon(this.router.routerState.snapshot.root);
         this.ribbon.emit(_.clone(this.ribbonStore));
       }
@@ -34,7 +31,8 @@ export class RibbonService {
 
   private resolveRibbon(snapshot: ActivatedRouteSnapshot, lastCollectedFrom?: RibbonFramer): void {
     if (snapshot.data && (snapshot.data as any).ribbon) {
-      this.ribbonStore = (snapshot.data as any).ribbon as Ribbon;
+      this.ribbonStore = _.clone((snapshot.data as any).ribbon as Ribbon);
+      this.ribbonStore.routeSnapshot = snapshot;
     }
     for (let child of snapshot.children) {
       this.resolveRibbon(child, lastCollectedFrom);

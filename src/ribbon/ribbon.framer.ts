@@ -2,6 +2,7 @@ import { Route } from '@angular/router';
 import { AutowireFramerService, Framer, FramingNgModule } from '@framing/ng-core';
 
 import { RibbonConfig } from './ribbon.config';
+import { RibbonResolver } from './ribbon.resolver';
 import { RibbonService } from './ribbon.service';
 
 import * as _ from 'lodash';
@@ -23,14 +24,17 @@ export class RibbonFramer extends Framer<RibbonConfig> {
       return;
     }
 
+    if (this.config.contentComponent) {
+      framingNgModule
+        .declare(this.config.contentComponent)
+        .entryComponent(this.config.contentComponent);
+    }
+
     super.frame(framingNgModule, route);
 
-    if (!route.data) { route.data = {}; }
+    if (!route.resolve) { route.resolve = {}; }
 
-    (route.data as any).ribbon = {
-      hasSave: this.config.hasSave,
-      hasBack: this.config.hasBack,
-    };
+    (route.resolve as any).ribbon = RibbonResolver;
   }
 
   /**
