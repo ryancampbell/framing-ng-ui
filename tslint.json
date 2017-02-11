@@ -1,0 +1,11 @@
+{
+  "extends": "./node_modules/@biznas/ng-core/tslint-base.json",
+
+  "rulesDirectory": [
+    "node_modules/codelyzer",
+    "node_modules/tslint-eslint-rules/dist/rules"
+  ],
+
+  "rules": {
+  }
+}
