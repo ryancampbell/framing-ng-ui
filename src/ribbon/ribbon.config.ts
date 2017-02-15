@@ -16,4 +16,10 @@ export interface RibbonConfig {
    * Defaults to undefined.
    */
   contentComponent?: Type<any>;
+
+  /**
+   * Ribbon content component container.
+   * Defaults to undefined.
+   */
+  contentComponentContainer?: string;
 }

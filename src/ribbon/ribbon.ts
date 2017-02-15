@@ -1,5 +1,6 @@
 import { ComponentFactoryResolver, Injector, Type } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { ContainerContent } from '@biznas/ng-core';
 
 export interface Ribbon {
   /**
@@ -13,20 +14,10 @@ export interface Ribbon {
   hasBack?: boolean;
 
   /**
-   * Ribbon content component.
+   * Ribbon container content.
    * Defaults to undefined.
    */
-  contentComponent?: Type<any>;
-
-  /**
-   * Injector for the component factory resolver.
-   */
-  contentComponentInjector?: Injector;
-
-  /**
-   * The component factory resolver for the contentComponent.
-   */
-  contentComponentResolver?: ComponentFactoryResolver;
+  containerContent?: ContainerContent;
 
   /**
    * The route snapshot associated with this ribbon

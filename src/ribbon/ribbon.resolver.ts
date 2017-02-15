@@ -22,13 +22,19 @@ export class RibbonResolver implements Resolve<Ribbon> {
   public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Ribbon {
     let framer = route.data && (route.data as any).ribbonFramer ? (route.data as any).ribbonFramer as RibbonFramer : undefined;
     if (framer) {
-      return {
+      let ribbon: Ribbon = {
         hasSave: framer.config.hasSave,
         hasBack: framer.config.hasBack,
-        contentComponent: framer.config.contentComponent,
-        contentComponentInjector: this.injector,
-        contentComponentResolver: this.resolver,
       };
+      if (framer.config.contentComponent && framer.config.contentComponentContainer) {
+        ribbon.containerContent = {
+          container: framer.config.contentComponentContainer,
+          component: framer.config.contentComponent,
+          injector: this.injector,
+          resolver: this.resolver,
+        };
+      }
+      return ribbon;
     } else {
       console.warn('Expecting ribbonFramer in route data');
       return undefined;

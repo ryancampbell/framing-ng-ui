@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
-import { Emitter, ReplayEmitter } from '@biznas/ng-core';
+import { ReplaySubject } from 'rxjs/Rx';
 import { AnonymousSubscription } from 'rxjs/Subscription';
 
 import { Breadcrumb } from './breadcrumb';
@@ -11,20 +11,20 @@ import * as _ from 'lodash';
 @Injectable()
 export class BreadcrumbService {
 
-  public breadcrumbs: Emitter<Breadcrumb[]> = new ReplayEmitter<Breadcrumb[]>();
+  public breadcrumbs$: ReplaySubject<Breadcrumb[]> = new ReplaySubject<Breadcrumb[]>(1);
 
   private subscriptions: AnonymousSubscription[] = [];
 
-  private breadcrumbsStore: Breadcrumb[];
+  private breadcrumbs: Breadcrumb[];
 
   constructor(
     private router: Router,
   ) {
     this.subscriptions.push(this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.breadcrumbsStore = [];
+        this.breadcrumbs = [];
         this.collectBreadcrumbs(this.router.routerState.snapshot.root);
-        this.breadcrumbs.emit(_.clone(this.breadcrumbsStore));
+        this.breadcrumbs$.next(_.clone(this.breadcrumbs));
       }
     }));
   }
@@ -33,7 +33,7 @@ export class BreadcrumbService {
     if (snapshot.data && (snapshot.data as any).breadcrumb) {
       let framer = (snapshot.data as any).breadcrumbFramer as BreadcrumbFramer;
       if (framer !== lastCollectedFrom) {
-        this.breadcrumbsStore.push((snapshot.data as any).breadcrumb as Breadcrumb);
+        this.breadcrumbs.push((snapshot.data as any).breadcrumb as Breadcrumb);
         lastCollectedFrom = framer;
       }
     }
