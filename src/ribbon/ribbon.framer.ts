@@ -24,10 +24,9 @@ export class RibbonFramer extends Framer<RibbonConfig> {
       return;
     }
 
-    if (this.config.contentComponent) {
+    if (this.config.contentComponent && this.config.contentComponentContainer) {
       framingNgModule
-        .declare(this.config.contentComponent)
-        .entryComponent(this.config.contentComponent);
+        .container(this.config.contentComponentContainer, this.config.contentComponent);
     }
 
     super.frame(framingNgModule, route);
@@ -35,6 +34,7 @@ export class RibbonFramer extends Framer<RibbonConfig> {
     if (!route.resolve) { route.resolve = {}; }
 
     (route.resolve as any).ribbon = RibbonResolver;
+    framingNgModule.provide(RibbonResolver);
   }
 
   /**

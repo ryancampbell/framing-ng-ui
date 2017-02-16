@@ -16,7 +16,6 @@ export class RibbonService {
 
   private ribbonSubject: ReplaySubject<Ribbon> = new ReplaySubject<Ribbon>(1);
   private ribbon: Ribbon;
-  private ribbonContainerDeactivate: () => void;
 
   private subscriptions: AnonymousSubscription[] = [];
 
@@ -32,17 +31,8 @@ export class RibbonService {
   }
 
   private onNavigationEnd(): void {
-    const prevRibbon = this.ribbon;
     this.ribbon = undefined;
     this.resolveRibbon(this.router.routerState.snapshot.root);
-    if (this.ribbon && prevRibbon && this.ribbon.containerContent === prevRibbon.containerContent) {
-      // ribbon container content has not changed
-    } else {
-      if (this.ribbonContainerDeactivate) { this.ribbonContainerDeactivate(); }
-      if (this.ribbon && this.ribbon.containerContent) {
-        this.ribbonContainerDeactivate = this.containerService.activate(this.ribbon.containerContent);
-      }
-    }
     this.ribbonSubject.next(_.clone(this.ribbon));
   }
 

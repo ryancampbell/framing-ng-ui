@@ -1,8 +1,6 @@
 import { ComponentFactoryResolver, Injectable, Injector } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot, UrlSegment } from '@angular/router';
 
-import { AutowireFramer } from '@framing/ng-core';
-
 import { Ribbon } from './ribbon';
 import { RibbonFramer } from './ribbon.framer';
 
@@ -26,14 +24,6 @@ export class RibbonResolver implements Resolve<Ribbon> {
         hasSave: framer.config.hasSave,
         hasBack: framer.config.hasBack,
       };
-      if (framer.config.contentComponent && framer.config.contentComponentContainer) {
-        ribbon.containerContent = {
-          container: framer.config.contentComponentContainer,
-          component: framer.config.contentComponent,
-          injector: this.injector,
-          resolver: this.resolver,
-        };
-      }
       return ribbon;
     } else {
       console.warn('Expecting ribbonFramer in route data');
