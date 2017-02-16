@@ -26,7 +26,7 @@ export class RibbonFramer extends Framer<RibbonConfig> {
 
     if (this.config.contentComponent && this.config.contentComponentContainer) {
       framingNgModule
-        .container(this.config.contentComponentContainer, this.config.contentComponent);
+        .container(this.config.contentComponentContainer, this.config.contentComponent, route);
     }
 
     super.frame(framingNgModule, route);
