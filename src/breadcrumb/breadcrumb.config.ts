@@ -22,7 +22,7 @@ export interface BreadcrumbStatic {
 
 export interface BreadcrumbFactory {
   breadcrumb(): Breadcrumb | Observable<Breadcrumb> | Promise<Breadcrumb>;
-};
+}
 
 export interface BreadcrumbFactoryBootstrap {
   factory: Type<BreadcrumbFactory>;
