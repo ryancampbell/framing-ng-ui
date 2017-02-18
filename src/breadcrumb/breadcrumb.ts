@@ -1,9 +1,16 @@
 export interface Breadcrumb {
+  /**
+   * The breadcrumb label.
+   */
   label: string;
 
-  active: boolean;
-
+  /**
+   * Optional icon name.
+   */
   icon?: string;
 
+  /**
+   * Optional link.
+   */
   link?: string;
 }

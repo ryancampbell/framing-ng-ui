@@ -29,12 +29,8 @@ export class BreadcrumbFramer extends Framer<BreadcrumbConfig> {
 
     if (!route.resolve) { route.resolve = {}; }
 
-    let resolver: Type<BreadcrumbResolver> = this.config.resolver ? this.config.resolver : BreadcrumbResolver;
+    (route.resolve as any).breadcrumb = BreadcrumbResolver;
 
-    (route.resolve as any).breadcrumb = resolver;
-
-    if (!this.config.resolver || !this.config.resolverProvider) {
-      framingNgModule.providers([ resolver ]);
-    }
+    framingNgModule.providers([ BreadcrumbResolver ]);
   }
 }

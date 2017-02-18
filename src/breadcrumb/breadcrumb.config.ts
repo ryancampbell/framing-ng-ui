@@ -1,8 +1,9 @@
-import { Type } from '@angular/core';
+import { Injector, Type } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
 
-import { BreadcrumbResolver } from './breadcrumb.resolver';
+import { Breadcrumb } from './breadcrumb';
 
-export interface BreadcrumbConfig {
+export interface BreadcrumbStatic {
   /**
    * The label for this breadcrumb.
    */
@@ -17,16 +18,17 @@ export interface BreadcrumbConfig {
    * Disables the link on the breadcrumb if set to false.
    */
   link?: string | boolean;
+}
 
-  /**
-   * Optional custom resolver derived from BreadcrumbResolver.
-   */
-  resolver?: Type<BreadcrumbResolver>;
+export interface BreadcrumbFactory {
+  breadcrumb(): Breadcrumb | Observable<Breadcrumb> | Promise<Breadcrumb>;
+};
 
-  /**
-   * If resolver is specified, resolverProvider can be set to true
-   * if the resolver is already provider. Otherwise, the BreadcrumbFramer
-   * will add it to the module's providers.
-   */
-  resolverProvider?: boolean;
+export interface BreadcrumbFactoryBootstrap {
+  factory: Type<BreadcrumbFactory>;
+  injector: Injector;
+}
+
+export interface BreadcrumbConfig {
+  breadcrumb: BreadcrumbStatic | Type<BreadcrumbFactory>;
 }
