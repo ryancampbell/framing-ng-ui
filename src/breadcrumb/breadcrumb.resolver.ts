@@ -34,7 +34,6 @@ export class BreadcrumbResolver implements Resolve<Breadcrumb | BreadcrumbFactor
         };
       } else {
         let result = { factory: framer.config.breadcrumb as Type<BreadcrumbFactory>, injector: this.injector };
-        console.error(result);
         return result;
       }
     } else {

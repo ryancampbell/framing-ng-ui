@@ -53,11 +53,9 @@ export class BreadcrumbService {
           breadcrumbHolder = { breadcrumb: breadcrumbData as Breadcrumb };
         } else {
           // breadcrumb factory
-          console.error('holy shit', { breadcrumbData });
           const breadcrumbFactoryBootstrap = breadcrumbData as BreadcrumbFactoryBootstrap;
           const breadcrumbFactory = breadcrumbFactoryBootstrap.injector.get(breadcrumbFactoryBootstrap.factory);
           const breadcrumbResult = breadcrumbFactory ? breadcrumbFactory.breadcrumb() : undefined;
-          console.error('holy shit', { breadcrumbData, breadcrumbFactory, breadcrumbResult });
           if (!breadcrumbFactory || !breadcrumbResult) {
             console.error('Failed to get breadcrumb factory result', { breadcrumbData });
           } else if ((breadcrumbResult as Breadcrumb).label) {
