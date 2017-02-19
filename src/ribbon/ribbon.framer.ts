@@ -15,6 +15,10 @@ export class RibbonFramer extends Framer<RibbonConfig> {
   @AutowireFramerService(RibbonService)
   public framerService: RibbonService = undefined;
 
+  constructor(config: RibbonConfig) {
+    super('RibbonFramer', config);
+  }
+
   /**
    * The frame function.
    */

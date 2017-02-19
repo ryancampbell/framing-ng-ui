@@ -16,6 +16,10 @@ export class BreadcrumbFramer extends Framer<BreadcrumbConfig> {
   @AutowireFramerService(BreadcrumbService)
   public framerService: BreadcrumbService = undefined;
 
+  constructor(config: BreadcrumbConfig) {
+    super('BreadcrumbFramer', config);
+  }
+
   /**
    * The frame function.
    */

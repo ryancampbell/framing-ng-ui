@@ -6,6 +6,10 @@ import { DialogConfig } from './dialog.config';
 
 export class DialogFramer extends Framer<DialogConfig> {
 
+  constructor(config: DialogConfig) {
+    super('DialogFramer', config);
+  }
+
   public frame(framingNgModule: FramingNgModule, route?: Route): void {
     super.frame(framingNgModule, route);
 
