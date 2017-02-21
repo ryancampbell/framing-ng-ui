@@ -15,10 +15,6 @@ export class RibbonFramer extends Framer<RibbonConfig> {
   @AutowireFramerService(RibbonService)
   public framerService: RibbonService = undefined;
 
-  constructor(config: RibbonConfig) {
-    super('RibbonFramer', config);
-  }
-
   /**
    * The frame function.
    */
@@ -38,7 +34,8 @@ export class RibbonFramer extends Framer<RibbonConfig> {
     if (!route.resolve) { route.resolve = {}; }
 
     (route.resolve as any).ribbon = RibbonResolver;
-    framingNgModule.provide(RibbonResolver);
+
+    framingNgModule.provide(RibbonResolver.provider(this));
   }
 
   /**

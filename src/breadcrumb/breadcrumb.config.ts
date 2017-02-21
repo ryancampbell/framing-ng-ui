@@ -24,9 +24,15 @@ export interface BreadcrumbFactory {
   breadcrumb(): Breadcrumb | Observable<Breadcrumb> | Promise<Breadcrumb>;
 }
 
-export interface BreadcrumbFactoryBootstrap {
-  factory: Type<BreadcrumbFactory>;
-  injector: Injector;
+export class BreadcrumbFactoryInjector {
+  constructor(
+    private factory: Type<BreadcrumbFactory>,
+    private injector: Injector,
+  ) {}
+
+  get(): BreadcrumbFactory {
+    return this.injector.get(this.factory);
+  }
 }
 
 export interface BreadcrumbConfig {

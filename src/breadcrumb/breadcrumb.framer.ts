@@ -16,10 +16,6 @@ export class BreadcrumbFramer extends Framer<BreadcrumbConfig> {
   @AutowireFramerService(BreadcrumbService)
   public framerService: BreadcrumbService = undefined;
 
-  constructor(config: BreadcrumbConfig) {
-    super('BreadcrumbFramer', config);
-  }
-
   /**
    * The frame function.
    */
@@ -35,6 +31,6 @@ export class BreadcrumbFramer extends Framer<BreadcrumbConfig> {
 
     (route.resolve as any).breadcrumb = BreadcrumbResolver;
 
-    framingNgModule.providers([ BreadcrumbResolver ]);
+    framingNgModule.provide(BreadcrumbResolver.provider(this));
   }
 }
