@@ -2,14 +2,14 @@ import { ComponentFactoryResolver, Injectable, Injector, Provider } from '@angul
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot, UrlSegment } from '@angular/router';
 
 import { Ribbon } from './ribbon';
-import { RibbonFramer } from './ribbon.framer';
+import { RibbonFrame } from './ribbon.frame';
 
 import * as _ from 'lodash';
 
 @Injectable()
 export class RibbonResolver implements Resolve<Ribbon> {
 
-  static provider(f: RibbonFramer): Provider {
+  static provider(f: RibbonFrame): Provider {
     return {
       provide: RibbonResolver,
       useFactory: (i, r) => new RibbonResolver(f, i, r),
@@ -18,7 +18,7 @@ export class RibbonResolver implements Resolve<Ribbon> {
   }
 
   constructor(
-    private framer: RibbonFramer,
+    private frame: RibbonFrame,
     private injector: Injector,
     private resolver: ComponentFactoryResolver,
   ) {}
@@ -28,8 +28,8 @@ export class RibbonResolver implements Resolve<Ribbon> {
    */
   public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Ribbon {
     let ribbon: Ribbon = {
-      hasSave: this.framer.config.hasSave,
-      hasBack: this.framer.config.hasBack,
+      hasSave: this.frame.config.hasSave,
+      hasBack: this.frame.config.hasBack,
     };
     return ribbon;
   }

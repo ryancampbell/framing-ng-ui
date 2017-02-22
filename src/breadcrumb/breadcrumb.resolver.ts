@@ -2,18 +2,16 @@ import { Injectable, Injector, Provider, Type } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot, UrlSegment } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 
-import { AutowireFramer } from '@framing/ng-core';
-
 import { Breadcrumb } from './breadcrumb';
 import { BreadcrumbFactory, BreadcrumbFactoryInjector, BreadcrumbStatic } from './breadcrumb.config';
-import { BreadcrumbFramer } from './breadcrumb.framer';
+import { BreadcrumbFrame } from './breadcrumb.frame';
 
 import * as _ from 'lodash';
 
 @Injectable()
 export class BreadcrumbResolver implements Resolve<Breadcrumb | BreadcrumbFactoryInjector> {
 
-  static provider(f: BreadcrumbFramer): Provider {
+  static provider(f: BreadcrumbFrame): Provider {
     return {
       provide: BreadcrumbResolver,
       useFactory: (i) => new BreadcrumbResolver(f, i),
@@ -22,7 +20,7 @@ export class BreadcrumbResolver implements Resolve<Breadcrumb | BreadcrumbFactor
   }
 
   constructor(
-    private framer: BreadcrumbFramer,
+    private frame: BreadcrumbFrame,
     private injector: Injector,
   ) {}
 
@@ -30,9 +28,9 @@ export class BreadcrumbResolver implements Resolve<Breadcrumb | BreadcrumbFactor
    * Resolve hook.
    */
   public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Breadcrumb | BreadcrumbFactoryInjector {
-    if ((this.framer.config.breadcrumb as BreadcrumbStatic).label) {
-      const breadcrumb = this.framer.config.breadcrumb as BreadcrumbStatic;
-      const url = this.framer.buildUrlLink(route);
+    if ((this.frame.config.breadcrumb as BreadcrumbStatic).label) {
+      const breadcrumb = this.frame.config.breadcrumb as BreadcrumbStatic;
+      const url = this.frame.buildUrlLink(route);
       const link = breadcrumb.link === false ? undefined : (_.isString(breadcrumb.link) ? breadcrumb.link : url);
       return {
         label: breadcrumb.label,
@@ -40,7 +38,7 @@ export class BreadcrumbResolver implements Resolve<Breadcrumb | BreadcrumbFactor
         link,
       };
     } else {
-      return new BreadcrumbFactoryInjector(this.framer.config.breadcrumb as Type<BreadcrumbFactory>, this.injector);
+      return new BreadcrumbFactoryInjector(this.frame.config.breadcrumb as Type<BreadcrumbFactory>, this.injector);
     }
   }
 }

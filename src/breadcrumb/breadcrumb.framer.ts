@@ -3,18 +3,19 @@ import { Route } from '@angular/router';
 import { AutowireFramerService, Framer, FramingNgModule } from '@framing/ng-core';
 
 import { BreadcrumbConfig } from './breadcrumb.config';
+import { BreadcrumbFrame } from './breadcrumb.frame';
 import { BreadcrumbResolver } from './breadcrumb.resolver';
-import { BreadcrumbService } from './breadcrumb.service';
-
-import * as _ from 'lodash';
 
 export class BreadcrumbFramer extends Framer<BreadcrumbConfig> {
 
   /**
-   * The instance of the framer service.
+   * Constructor.
    */
-  @AutowireFramerService(BreadcrumbService)
-  public framerService: BreadcrumbService = undefined;
+  constructor(
+    config?: BreadcrumbConfig,
+  ) {
+    super(new BreadcrumbFrame(config));
+  }
 
   /**
    * The frame function.
@@ -31,6 +32,6 @@ export class BreadcrumbFramer extends Framer<BreadcrumbConfig> {
 
     (route.resolve as any).breadcrumb = BreadcrumbResolver;
 
-    framingNgModule.provide(BreadcrumbResolver.provider(this));
+    framingNgModule.provide(BreadcrumbResolver.provider(this.theFrame as BreadcrumbFrame));
   }
 }

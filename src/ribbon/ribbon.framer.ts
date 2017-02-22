@@ -2,18 +2,19 @@ import { Route } from '@angular/router';
 import { AutowireFramerService, Framer, FramingNgModule } from '@framing/ng-core';
 
 import { RibbonConfig } from './ribbon.config';
+import { RibbonFrame } from './ribbon.frame';
 import { RibbonResolver } from './ribbon.resolver';
-import { RibbonService } from './ribbon.service';
-
-import * as _ from 'lodash';
 
 export class RibbonFramer extends Framer<RibbonConfig> {
 
   /**
-   * The instance of the framer service.
+   * Constructor.
    */
-  @AutowireFramerService(RibbonService)
-  public framerService: RibbonService = undefined;
+  constructor(
+    config?: RibbonConfig,
+  ) {
+    super(new RibbonFrame(config));
+  }
 
   /**
    * The frame function.
@@ -24,18 +25,18 @@ export class RibbonFramer extends Framer<RibbonConfig> {
       return;
     }
 
+    super.frame(framingNgModule, route);
+
     if (this.config.contentComponent && this.config.contentComponentContainer) {
       framingNgModule
         .container(this.config.contentComponentContainer, this.config.contentComponent, route);
     }
 
-    super.frame(framingNgModule, route);
-
     if (!route.resolve) { route.resolve = {}; }
 
     (route.resolve as any).ribbon = RibbonResolver;
 
-    framingNgModule.provide(RibbonResolver.provider(this));
+    framingNgModule.provide(RibbonResolver.provider(this.theFrame as RibbonFrame));
   }
 
   /**
