@@ -26,8 +26,6 @@ export class BreadcrumbFramer extends Framer<BreadcrumbConfig> {
       return;
     }
 
-    super.frame(framingNgModule, route);
-
     if (!route.resolve) { route.resolve = {}; }
 
     (route.resolve as any).breadcrumb = BreadcrumbResolver;

@@ -20,7 +20,6 @@ export class DialogFramer extends Framer<DialogConfig> {
    * The frame function.
    */
   public frame(framingNgModule: FramingNgModule, route?: Route): void {
-    super.frame(framingNgModule, route);
 
     framingNgModule
       .component(DialogComponent)

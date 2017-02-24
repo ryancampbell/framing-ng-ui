@@ -23,7 +23,5 @@ export class MenuItemFramer extends Framer<MenuItemConfig> {
       console.warn('MenuItemFramer must be attached to route data');
       return;
     }
-
-    super.frame(framingNgModule, route);
   }
 }
