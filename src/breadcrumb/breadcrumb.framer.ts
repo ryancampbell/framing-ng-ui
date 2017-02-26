@@ -1,6 +1,6 @@
 import { Type } from '@angular/core';
 import { Route } from '@angular/router';
-import { AutowireFramerService, Framer, FramingNgModule } from '@framing/ng-core';
+import { Framer, FramingNgModule } from '@framing/ng-core';
 
 import { BreadcrumbConfig } from './breadcrumb.config';
 import { BreadcrumbFrame } from './breadcrumb.frame';

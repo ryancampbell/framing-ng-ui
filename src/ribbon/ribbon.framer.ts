@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { AutowireFramerService, Framer, FramingNgModule } from '@framing/ng-core';
+import { Framer, FramingNgModule } from '@framing/ng-core';
 
 import { RibbonConfig } from './ribbon.config';
 import { RibbonFrame } from './ribbon.frame';
