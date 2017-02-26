@@ -20,10 +20,7 @@ export class RibbonFramer extends Framer<RibbonConfig> {
    * The frame function.
    */
   public frame(framingNgModule: FramingNgModule, route?: Route): void {
-    if (!route) {
-      console.warn('RibbonFramer must be attached to route data');
-      return;
-    }
+    if (!route) { route = framingNgModule.getOrAddRoute(); }
 
     if (this.config.contentComponent && this.config.contentComponentContainer) {
       framingNgModule

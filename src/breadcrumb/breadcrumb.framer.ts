@@ -21,10 +21,7 @@ export class BreadcrumbFramer extends Framer<BreadcrumbConfig> {
    * The frame function.
    */
   public frame(framingNgModule: FramingNgModule, route?: Route): void {
-    if (!route) {
-      console.warn('BreadcrumbFramer must be attached to route data');
-      return;
-    }
+    if (!route) { route = framingNgModule.getOrAddRoute(); }
 
     if (!route.resolve) { route.resolve = {}; }
 
