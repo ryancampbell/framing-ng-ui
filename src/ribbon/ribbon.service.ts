@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
-import { ContainerOutletService } from '@biznas/ng-core';
+import { BizContainerOutletService } from '@biznas/ng-core';
 import { Observable, ReplaySubject } from 'rxjs/Rx';
 import { AnonymousSubscription } from 'rxjs/Subscription';
 
@@ -21,7 +21,7 @@ export class RibbonService {
 
   constructor(
     private router: Router,
-    private containerOutletService: ContainerOutletService,
+    private containerOutletService: BizContainerOutletService,
   ) {
     this.subscriptions.push(this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {

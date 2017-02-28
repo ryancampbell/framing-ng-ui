@@ -1,6 +1,6 @@
 import { ComponentFactoryResolver, Injector, Type } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
-import { ContainerOutletContent } from '@biznas/ng-core';
+import { BizContainerOutletContent } from '@biznas/ng-core';
 
 export interface Ribbon {
   /**
@@ -17,7 +17,7 @@ export interface Ribbon {
    * Ribbon container content.
    * Defaults to undefined.
    */
-  containerContent?: ContainerOutletContent;
+  containerContent?: BizContainerOutletContent;
 
   /**
    * The route snapshot associated with this ribbon
