@@ -14,7 +14,7 @@ export class BreadcrumbResolver implements Resolve<Breadcrumb | BreadcrumbFactor
   static provider(f: BreadcrumbFrame): Provider {
     return {
       provide: BreadcrumbResolver,
-      useFactory: (i) => new BreadcrumbResolver(f, i),
+      useFactory: (i: Injector) => new BreadcrumbResolver(f, i),
       deps: [ Injector ],
     };
   }

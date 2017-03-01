@@ -12,15 +12,14 @@ export class RibbonResolver implements Resolve<Ribbon> {
   static provider(f: RibbonFrame): Provider {
     return {
       provide: RibbonResolver,
-      useFactory: (i, r) => new RibbonResolver(f, i, r),
-      deps: [ Injector, ComponentFactoryResolver ],
+      useFactory: (i: Injector) => new RibbonResolver(f, i),
+      deps: [ Injector ],
     };
   }
 
   constructor(
     private frame: RibbonFrame,
     private injector: Injector,
-    private resolver: ComponentFactoryResolver,
   ) {}
 
   /**
