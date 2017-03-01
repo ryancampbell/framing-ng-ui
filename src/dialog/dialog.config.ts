@@ -1,3 +1,6 @@
+import { MdDialogConfig } from '@angular/material';
+
 export interface DialogConfig {
-  component: any;
+  component?: any;
+  dialogConfig?: MdDialogConfig;
 }
