@@ -3,11 +3,5 @@ import { Framing } from '@framing/ng-core';
 
 import { MenuItemService } from './menu-item.service';
 
-@NgModule(Framing
-  .ngModule({
-    providers: [
-      MenuItemService,
-    ],
-  })
-  .frame())
+@NgModule(Framing((framing) => framing.provider(MenuItemService)))
 export class MenuItemModule {}

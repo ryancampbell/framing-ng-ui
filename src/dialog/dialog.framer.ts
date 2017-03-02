@@ -29,8 +29,8 @@ export class DialogFramer extends Framer<DialogConfig> {
   /**
    * The frame function.
    */
-  public frame(framingNgModule: FramingNgModule, route?: Route): void {
-    framingNgModule
+  public frame(framing: FramingNgModule): void {
+    framing
       .import(MaterialModule)
       .componentAndDeclare(DialogComponent)
       .declareAndEntryComponent(this.config.component);

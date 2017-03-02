@@ -1,7 +1,7 @@
 {
   "name": "@framing/ng-ui",
   "description": "Framing UI",
-  "version": "0.1.35",
+  "version": "0.2.3",
   "main": "index.js",
   "typings": "index.d.ts",
   "private": false,
@@ -27,7 +27,7 @@
     "@angular/router": "^4.0.0-rc.1",
     "@angular/material": "^2.0.0-beta.2",
     "@biznas/ng-core": "0.4.15",
-    "@framing/ng-core": "0.1.35",
+    "@framing/ng-core": "0.2.3",
     "angular": "1.6.0",
     "body-parser": "^1.15.2",
     "compression": "^1.6.2",

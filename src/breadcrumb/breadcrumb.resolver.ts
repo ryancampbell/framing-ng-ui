@@ -1,5 +1,6 @@
 import { Injectable, Injector, Provider, Type } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot, UrlSegment } from '@angular/router';
+import { Frame } from '@framing/ng-core';
 import { Observable } from 'rxjs/Rx';
 
 import { Breadcrumb } from './breadcrumb';
@@ -30,8 +31,7 @@ export class BreadcrumbResolver implements Resolve<Breadcrumb | BreadcrumbFactor
   public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Breadcrumb | BreadcrumbFactoryInjector {
     if ((this.frame.config.breadcrumb as BreadcrumbStatic).label) {
       const breadcrumb = this.frame.config.breadcrumb as BreadcrumbStatic;
-      const url = this.frame.buildUrlLink(route);
-      const link = breadcrumb.link === false ? undefined : (_.isString(breadcrumb.link) ? breadcrumb.link : url);
+      const link = breadcrumb.link === false ? undefined : (_.isString(breadcrumb.link) ? breadcrumb.link : Frame.buildUrlLink(route));
       return {
         label: breadcrumb.label,
         icon: breadcrumb.icon,

@@ -19,19 +19,16 @@ export class RibbonFramer extends Framer<RibbonConfig> {
   /**
    * The frame function.
    */
-  public frame(framingNgModule: FramingNgModule, route?: Route): void {
-    if (!route) { route = framingNgModule.getOrAddRoute(); }
+  public frame(framing: FramingNgModule): void {
+    this.requireRoute();
 
     if (this.config.contentComponent && this.config.contentComponentContainer) {
-      framingNgModule
-        .container(this.config.contentComponentContainer, this.config.contentComponent, route);
+      framing.container(this.config.contentComponentContainer, this.config.contentComponent, this.route);
     }
 
-    if (!route.resolve) { route.resolve = {}; }
-
-    (route.resolve as any).ribbon = RibbonResolver;
-
-    framingNgModule.provide(RibbonResolver.provider(this.theFrame as RibbonFrame));
+    framing
+      .resolves({ ribbon: RibbonResolver }, this.route)
+      .provide(RibbonResolver.provider(this.theFrame as RibbonFrame));
   }
 
   /**

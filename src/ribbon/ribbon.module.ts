@@ -3,10 +3,5 @@ import { Framing } from '@framing/ng-core';
 
 import { RibbonService } from './ribbon.service';
 
-@NgModule(Framing
-  .ngModule()
-  .providers([
-    RibbonService,
-  ])
-  .frame())
+@NgModule(Framing((framing) => framing.provider(RibbonService)))
 export class RibbonModule {}

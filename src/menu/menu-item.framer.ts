@@ -18,10 +18,7 @@ export class MenuItemFramer extends Framer<MenuItemConfig> {
   /**
    * The frame function.
    */
-  public frame(framingNgModule: FramingNgModule, route?: Route): void {
-    if (!route) {
-      console.warn('MenuItemFramer must be attached to route data');
-      return;
-    }
+  public frame(framing: FramingNgModule): void {
+    this.requireRoute();
   }
 }
