@@ -20,13 +20,11 @@ export class BreadcrumbFramer extends Framer<BreadcrumbConfig> {
   /**
    * The frame function.
    */
-  public frame(framingNgModule: FramingNgModule, route?: Route): void {
-    if (!route) { route = framingNgModule.getOrAddRoute(); }
+  public frame(framing: FramingNgModule): void {
+    this.requireRoute();
 
-    if (!route.resolve) { route.resolve = {}; }
-
-    (route.resolve as any).breadcrumb = BreadcrumbResolver;
-
-    framingNgModule.provide(BreadcrumbResolver.provider(this.theFrame as BreadcrumbFrame));
+    framing
+      .resolves({ breadcrumb: BreadcrumbResolver }, this.route)
+      .provide(BreadcrumbResolver.provider(this.theFrame as BreadcrumbFrame));
   }
 }

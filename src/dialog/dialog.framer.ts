@@ -30,8 +30,8 @@ export class DialogFramer extends Framer<DialogConfig> {
   /**
    * The frame function.
    */
-  public frame(framingNgModule: FramingNgModule, route?: Route): void {
-    framingNgModule
+  public frame(framing: FramingNgModule): void {
+    framing
       .route()
       .imports([
         DialogComponentsModule,
