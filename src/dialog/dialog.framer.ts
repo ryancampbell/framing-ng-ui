@@ -2,8 +2,8 @@ import { MaterialModule } from '@angular/material';
 import { Route } from '@angular/router';
 import { Framer, FramingNgModule } from '@framing/ng-core';
 
-import { DialogComponent } from './dialog.component';
 import { DialogComponentsModule } from './dialog-components.module';
+import { DialogComponent } from './dialog.component';
 import { DialogConfig } from './dialog.config';
 import { DialogFrame } from './dialog.frame';
 
