@@ -3,6 +3,7 @@ import { Route } from '@angular/router';
 import { Framer, FramingNgModule } from '@framing/ng-core';
 
 import { DialogComponent } from './dialog.component';
+import { DialogComponentsModule } from './dialog-components.module';
 import { DialogConfig } from './dialog.config';
 import { DialogFrame } from './dialog.frame';
 
@@ -31,8 +32,12 @@ export class DialogFramer extends Framer<DialogConfig> {
    */
   public frame(framingNgModule: FramingNgModule, route?: Route): void {
     framingNgModule
-      .import(MaterialModule)
-      .componentAndDeclare(DialogComponent)
+      .route()
+      .imports([
+        DialogComponentsModule,
+        MaterialModule,
+      ])
+      .component(DialogComponent)
       .declareAndEntryComponent(this.config.component);
   }
 }
