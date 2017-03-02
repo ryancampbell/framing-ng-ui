@@ -1,29 +1,38 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MdDialog, MdDialogConfig, MdDialogRef } from '@angular/material';
 
-import { DialogFrame } from './index';
+import { DialogFrame } from './dialog.frame';
 
 @Component({
   template: '<div></div>',
 })
-export class DialogComponent implements OnDestroy {
+export class DialogComponent implements OnInit, OnDestroy {
 
-  private dialogRef: MdDialogRef<any>;
+  public dialogRef: MdDialogRef<any>;
 
   constructor(
-    private frame: DialogFrame,
-    private dialog: MdDialog,
-  ) {
+    public dialogFrame: DialogFrame,
+    public dialog: MdDialog,
+  ) {}
+
+  public ngOnInit(): void {
     this.openDialog();
   }
 
   public ngOnDestroy(): void {
-    if (this.dialogRef) {
-      this.dialogRef.close();
-    }
+    this.closeDialog();
   }
 
   private openDialog(): void {
-    this.dialogRef = this.dialog.open(this.frame.config.component, { disableClose: true });
+    this.dialogRef = this.dialog.open(
+      this.dialogFrame.config.component,
+      this.dialogFrame.config.dialogConfig,
+    );
+  }
+
+  private closeDialog(): void {
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    }
   }
 }

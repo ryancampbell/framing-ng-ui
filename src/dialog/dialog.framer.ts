@@ -1,3 +1,4 @@
+import { MaterialModule } from '@angular/material';
 import { Route } from '@angular/router';
 import { Framer, FramingNgModule } from '@framing/ng-core';
 
@@ -17,12 +18,21 @@ export class DialogFramer extends Framer<DialogConfig> {
   }
 
   /**
+   * Default config
+   */
+  public defaultConfig(): DialogConfig {
+    return {
+      dialogConfig: {},
+    };
+  }
+
+  /**
    * The frame function.
    */
   public frame(framingNgModule: FramingNgModule, route?: Route): void {
-
     framingNgModule
-      .component(DialogComponent)
-      .declare(this.config.component);
+      .import(MaterialModule)
+      .componentAndDeclare(DialogComponent)
+      .declareAndEntryComponent(this.config.component);
   }
 }
