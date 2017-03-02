@@ -37,7 +37,6 @@ export class DialogFramer extends Framer<DialogConfig> {
         DialogComponentsModule,
         MaterialModule,
       ])
-      .component(DialogComponent)
-      .declareAndEntryComponent(this.config.component);
+      .component(DialogComponent);
   }
 }
